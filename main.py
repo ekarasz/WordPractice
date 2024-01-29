@@ -1,24 +1,9 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import configparser
 import logging
 import pandas as pd
 import random
-# import requests
-# from io import StringIO
 import os
 import sys
-
-
-# def load_file(url):
-#    file_id = url.split('/')[-2]
-#    google_drive_url = 'https://drive.google.com/uc?export=download&id=' + file_id
-#    url2 = requests.get(google_drive_url).text
-#    csv_raw = StringIO(url2)
-#    df = pd.read_csv(csv_raw)
-#    return df
 
 
 def choose_file(exercises_folder):
@@ -41,9 +26,6 @@ def choose_file(exercises_folder):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-
-    # url = 'https://drive.google.com/file/d/1FZkEvVHDOQISbQn28Yw8OcWT3sA61RTd/view?usp=drive_link'
-    # df = load_file(url)
 
     # Variables from the config file
     config = configparser.ConfigParser()
@@ -80,13 +62,21 @@ if __name__ == '__main__':
     word_count = len(df.index)
     logging.debug(f'Number of words in file: {word_count}')
 
+    header = df.columns.to_list()
+
     number_of_tries = int(input(f'Number of tries? '))
 
     repeat = True
     while repeat:
-        header = df.columns.to_list()
         from_language = header[1]
-        to_language = header[0]
+        to_language = input(
+            f'Which language do you want to practice: {header[0]} or {header[1]}? Default[{header[0]}] ')
+        if to_language.strip().lower() == header[1].strip().lower():
+            from_language = header[0]
+        else:
+            to_language = header[0]
+            from_language = header[1]
+
         right_answers = {}
         wrong_answers = {}
         was_once = []
