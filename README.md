@@ -19,7 +19,7 @@ Start the program and follow the questions. You can choose:
 * Which language do you want to translate from?
 
 ## Next steps
-* Refactor the code (OOP, define functions)
-* Add unit tests
-* Save results for statistics / practice words with higher chance that wrong during multiple tries
+* Add unittests
+* Add better exceptions
+* Add a room for mistakes
 * Follow improvements (notice words you start to get right)
